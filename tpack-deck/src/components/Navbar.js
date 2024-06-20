@@ -1,12 +1,15 @@
 import React from 'react';
+import logo from '../logo.png';
 
 function Navbar() {
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white shadow-md h-[44px]">
+    <nav className="fixed top-0 left-0 w-full bg-white shadow-md h-[60px]">
       <div className="container py-2 mx-auto flex items-center justify-between">
         <div className="hidden md:block text-xl font-bold space-x-1">
           {/* 로고 부분 */}
-          <a href="/">My Logo</a>
+          <a href="/">
+            <img src={logo} alt="logo" className="h-12" />
+          </a>
         </div>
         <div className="flex space-x-2">
           {/* 메뉴 부분 */}

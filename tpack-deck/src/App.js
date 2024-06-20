@@ -10,6 +10,13 @@ function App() {
 
   const { cards, currentSelectedCard, updateSelectedCard, selectRandomCards } = useStore();
   const [rightContent, setRightContent] = useState(null);
+  const [pageNo, setPageNo] = useState(null);
+
+  useEffect(() => {
+    const pageNo = parseInt(getQueryParam('pageNo'), 10);
+    setPageNo(pageNo);
+  }
+  , []);
 
   const handleSelectItem = (card) => {
     updateSelectedCard(card.type, card.id);
@@ -25,7 +32,6 @@ function App() {
   };
 
   const handleOpenPadlet = () => {
-    const pageNo = parseInt(getQueryParam('pageNo'), 10);
     const urlObject = URLs.find(url => url.pageNo === pageNo);
     if (urlObject) {
       setRightContent(
@@ -58,7 +64,7 @@ function App() {
         };
       case 'content':
         return {
-          background: 'linear-gradient(156deg, #FFBB37 -36.94%, #C9FF31 174.15%)',
+          background: 'linear-gradient(156deg, #EEAA27 -36.94%, #B9EF21 174.15%)',
         };
       default:
         return {};
@@ -102,8 +108,10 @@ function App() {
             <div className='flex flex-col p-4 items-end justify-end'>
               <button className='bg-[#FFBB37] font-bold w-full px-4 py-2 rounded-full mt-4 shadow-sm hover:scale-105 cursor-pointer transition-transform' onClick={handleShowContentEditor}>Content 입력</button>
               <button className='bg-[#CCF45B] font-bold w-full px-4 py-2 rounded-full mt-4 shadow-sm hover:scale-105 cursor-pointer transition-transform' onClick={handleRandomSelect}>랜덤 뽑기</button>
+              { pageNo ?   
               <button className='bg-blue-500 text-white w-full px-4 py-2 rounded-full mt-4 shadow-sm hover:scale-105 cursor-pointer transition-transform' onClick={handleOpenPadlet}>Padlet 열기</button>
-            </div>
+              : ""}
+              </div>
           </div>
           <div>
             <h2 className="text-xl font-bold mb-2">Technology</h2>
