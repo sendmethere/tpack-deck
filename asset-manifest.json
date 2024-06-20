@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/tpack-deck/static/css/main.518729ef.css",
-    "main.js": "/tpack-deck/static/js/main.a83d970a.js",
+    "main.css": "/tpack-deck/static/css/main.0ea14882.css",
+    "main.js": "/tpack-deck/static/js/main.ec763036.js",
     "static/js/453.e8cfc236.chunk.js": "/tpack-deck/static/js/453.e8cfc236.chunk.js",
     "index.html": "/tpack-deck/index.html",
-    "main.518729ef.css.map": "/tpack-deck/static/css/main.518729ef.css.map",
-    "main.a83d970a.js.map": "/tpack-deck/static/js/main.a83d970a.js.map",
+    "main.0ea14882.css.map": "/tpack-deck/static/css/main.0ea14882.css.map",
+    "main.ec763036.js.map": "/tpack-deck/static/js/main.ec763036.js.map",
     "453.e8cfc236.chunk.js.map": "/tpack-deck/static/js/453.e8cfc236.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.518729ef.css",
-    "static/js/main.a83d970a.js"
+    "static/css/main.0ea14882.css",
+    "static/js/main.ec763036.js"
   ]
 }
