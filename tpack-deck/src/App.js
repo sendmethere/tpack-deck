@@ -5,12 +5,14 @@ import URLs from './data/URLs';
 import Cards from './data/Cards';
 import Card from './components/Card';
 import ContentEditor from './components/ContentEditor';
+import About from './components/About';
 
 function App() {
 
   const { cards, currentSelectedCard, updateSelectedCard, selectRandomCards } = useStore();
-  const [rightContent, setRightContent] = useState(null);
   const [pageNo, setPageNo] = useState(null);
+  const [rightContent, setRightContent] = useState(null);
+  const [rightContentVisible, setRightContentVisible] = useState(false);
 
   useEffect(() => {
     const pageNo = parseInt(getQueryParam('pageNo'), 10);
@@ -23,6 +25,7 @@ function App() {
   };
 
   const handleShowContentEditor = () => {
+    setRightContentVisible(true);
     setRightContent(<ContentEditor />);
   };
 
@@ -32,11 +35,11 @@ function App() {
   };
 
   const handleOpenPadlet = () => {
+    setRightContentVisible(true);
     const urlObject = URLs.find(url => url.pageNo === pageNo);
     if (urlObject) {
       setRightContent(
-        <div 
-          className='padlet-embed w-full h-full'>
+        <div className='padlet-embed w-full h-full'>
         <iframe 
           src={urlObject.url} 
           style={{ border: 'none' }} 
@@ -51,6 +54,11 @@ function App() {
       alert(`해당 페이지를 찾을 수 없습니다. pageNo: ${pageNo}`);
     }
   };
+
+  const handleOpenAbout = () => {
+    setRightContentVisible(true);
+    setRightContent(<About/>);
+  }
 
   const getBackgroundStyle = (type) => {
     switch (type) {
@@ -92,10 +100,10 @@ function App() {
 
 
   return (
-    <div className='bg-[#f5f8fa] min-h-[100vh]'>
-      <Navbar />
+    <div className='bg-[#f5f8fa] min-h-screen h-full'>
+      <Navbar handleOpenAbout={handleOpenAbout} setRightContentVisible={setRightContentVisible} />
       <div className="pt-[44px] flex">
-        <div className="w-1/2 p-10 h-screen overflow-scroll">
+        <div className={`${ rightContentVisible ? "w-1/2 overflow-scroll h-screen" : "max-w-[800px] mx-auto"} p-10 `}>
           <div className='flex-col md:flex-row flex mb-10'>
             <div className='bg-white border rounded-xl p-4'>
               <h2 className="text-xl font-bold mb-4">선택된 카드들</h2>
@@ -123,9 +131,11 @@ function App() {
             {renderCardsByType('pedagogy')}
           </div>
         </div>
-        <div className="w-1/2 h-screen overflow-scroll bg-white p-4 flex flex-col items-center justify-center">
+        { rightContentVisible ? 
+        <div className="w-1/2 h-screen overflow-scroll flex flex-col items-center justify-center">
           {rightContent}
         </div>
+        : ""}
       </div>
     </div>
   );
