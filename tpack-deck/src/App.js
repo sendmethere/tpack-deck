@@ -1,16 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import Navbar from './components/Navbar';
 import useStore from './store/useStore';
 import URLs from './data/URLs';
 import Cards from './data/Cards';
 import Card from './components/Card';
+import ContentEditor from './components/ContentEditor';
 
 function App() {
 
-  const { cards, currentSelectedCard, updateSelectedCard } = useStore();
+  const { cards, currentSelectedCard, updateSelectedCard, selectRandomCards } = useStore();
+  const [rightContent, setRightContent] = useState(null);
 
   const handleSelectItem = (card) => {
     updateSelectedCard(card.type, card.id);
+  };
+
+  const handleShowContentEditor = () => {
+    setRightContent(<ContentEditor />);
+  };
+
+  const getQueryParam = (param) => {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  };
+
+  const handleOpenPadlet = () => {
+    const pageNo = parseInt(getQueryParam('pageNo'), 10);
+    const urlObject = URLs.find(url => url.pageNo === pageNo);
+    if (urlObject) {
+      setRightContent(
+        <div 
+          className='padlet-embed w-full h-full'>
+        <iframe 
+          src={urlObject.url} 
+          style={{ border: 'none' }} 
+          width="100%"
+          height="100%"
+          title="Padlet"
+          allow="camera;microphone;geolocation"
+        ></iframe>
+        </div>
+      );
+    } else {
+      alert(`해당 페이지를 찾을 수 없습니다. pageNo: ${pageNo}`);
+    }
   };
 
   const getBackgroundStyle = (type) => {
@@ -40,19 +73,25 @@ function App() {
         card={card} 
         getBackgroundStyle={getBackgroundStyle}
         onClick={handleSelectItem} 
+        isSelected={currentSelectedCard[type] === card.id}
         />
       ))}
     </div>
   );
+
+  const handleRandomSelect = () => {
+    selectRandomCards();
+  };
+
 
 
   return (
     <div className='bg-[#f5f8fa] min-h-[100vh]'>
       <Navbar />
       <div className="pt-[44px] flex">
-        <div className="w-1/2 p-10">
+        <div className="w-1/2 p-10 h-screen overflow-scroll">
           <div className='flex-col md:flex-row flex mb-10'>
-            <div className='bg-white border rounded-xl p-2 '>
+            <div className='bg-white border rounded-xl p-4'>
               <h2 className="text-xl font-bold mb-4">선택된 카드들</h2>
                 <div className="mb-4 w-full flex items-center ">
                   <Card card={cards.find(card => card.id === currentSelectedCard.technology)} getBackgroundStyle={getBackgroundStyle} onClick={handleSelectItem} />
@@ -61,9 +100,9 @@ function App() {
                 </div>
             </div>
             <div className='flex flex-col p-4 items-end justify-end'>
-              <button className='bg-blue-500 text-white w-full px-4 py-2 rounded-full mt-4'>Content 입력</button>
-              <button className='bg-blue-500 text-white w-full px-4 py-2 rounded-full mt-4'>랜덤 뽑기</button>
-              <button className='bg-blue-500 text-white w-full px-4 py-2 rounded-full mt-4'>Padlet 열기</button>
+              <button className='bg-[#FFBB37] font-bold w-full px-4 py-2 rounded-full mt-4 shadow-sm hover:scale-105 cursor-pointer transition-transform' onClick={handleShowContentEditor}>Content 입력</button>
+              <button className='bg-[#CCF45B] font-bold w-full px-4 py-2 rounded-full mt-4 shadow-sm hover:scale-105 cursor-pointer transition-transform' onClick={handleRandomSelect}>랜덤 뽑기</button>
+              <button className='bg-blue-500 text-white w-full px-4 py-2 rounded-full mt-4 shadow-sm hover:scale-105 cursor-pointer transition-transform' onClick={handleOpenPadlet}>Padlet 열기</button>
             </div>
           </div>
           <div>
@@ -76,7 +115,8 @@ function App() {
             {renderCardsByType('pedagogy')}
           </div>
         </div>
-        <div className="w-1/2 bg-white p-4 flex flex-col items-center justify-center">
+        <div className="w-1/2 h-screen overflow-scroll bg-white p-4 flex flex-col items-center justify-center">
+          {rightContent}
         </div>
       </div>
     </div>

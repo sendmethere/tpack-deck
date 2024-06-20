@@ -1,5 +1,5 @@
 const URLs = [
-    { pageNo: 1, url: "https://example1.com", exposed: true },
+    { pageNo: 1, url: "https://cjsbes.padlet.org/embed/9qf2kz0p9inee8se", exposed: true },
     { pageNo: 2, url: "https://example2.com", exposed: true },
     { pageNo: 3, url: "https://example3.com", exposed: true },
     { pageNo: 4, url: "https://example4.com", exposed: true },
