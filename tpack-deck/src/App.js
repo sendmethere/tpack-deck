@@ -6,17 +6,33 @@ import Cards from './data/Cards';
 import Card from './components/Card';
 import ContentEditor from './components/ContentEditor';
 import About from './components/About';
+import Pages from './components/Pages';
 
 function App() {
 
   const { cards, currentSelectedCard, updateSelectedCard, selectRandomCards } = useStore();
-  const [pageNo, setPageNo] = useState(null);
+  const [pageParam, setPageParam] = useState(null);
+  const [area, setArea] = useState(null);
+  const [no, setNo] = useState(null);
   const [rightContent, setRightContent] = useState(null);
   const [rightContentVisible, setRightContentVisible] = useState(false);
 
+
+  const getQueryParam = (param) => {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  };
+
   useEffect(() => {
-    const pageNo = parseInt(getQueryParam('pageNo'), 10);
-    setPageNo(pageNo);
+    const pageParam_ = getQueryParam('page');
+    console.log(pageParam_);
+
+    const [area_, no_] = pageParam_ ? pageParam_.split('-').map(Number) : [null , null]; 
+    console.log(area_, no_);
+
+    setPageParam(pageParam_);
+    setArea(area_);
+    setNo(no_);
   }
   , []);
 
@@ -29,14 +45,10 @@ function App() {
     setRightContent(<ContentEditor />);
   };
 
-  const getQueryParam = (param) => {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-  };
 
   const handleOpenPadlet = () => {
     setRightContentVisible(true);
-    const urlObject = URLs.find(url => url.pageNo === pageNo);
+    const urlObject = URLs.find(url => url.area === area && url.no === no);
     if (urlObject) {
       setRightContent(
         <div className='padlet-embed w-full h-full'>
@@ -51,13 +63,19 @@ function App() {
         </div>
       );
     } else {
-      alert(`해당 페이지를 찾을 수 없습니다. pageNo: ${pageNo}`);
+      alert(`해당 페이지를 찾을 수 없습니다. ${area} - ${no}`);
     }
   };
 
   const handleOpenAbout = () => {
     setRightContentVisible(true);
     setRightContent(<About/>);
+  }
+
+  const handleOpenPages = () => {
+    setRightContentVisible(true);
+    setRightContent(<Pages/>);
+
   }
 
   const getBackgroundStyle = (type) => {
@@ -101,8 +119,8 @@ function App() {
 
   return (
     <div className='bg-[#f5f8fa] min-h-screen h-full'>
-      <Navbar handleOpenAbout={handleOpenAbout} setRightContentVisible={setRightContentVisible} />
-      <div className="pt-[44px] flex">
+      <Navbar handleOpenAbout={handleOpenAbout} setRightContentVisible={setRightContentVisible} handleOpenPages={handleOpenPages}/>
+      <div className="pt-[52px] flex">
         <div className={`${ rightContentVisible ? "w-1/2 overflow-scroll h-screen" : "max-w-[800px] mx-auto"} p-10 `}>
           <div className='flex-col md:flex-row flex mb-10'>
             <div className='bg-white border rounded-xl p-4'>
@@ -116,7 +134,7 @@ function App() {
             <div className='flex flex-col p-4 items-end justify-end'>
               <button className='bg-[#FFBB37] font-bold w-full px-4 py-2 rounded-full mt-4 shadow-sm hover:scale-105 cursor-pointer transition-transform' onClick={handleShowContentEditor}>Content 입력</button>
               <button className='bg-[#CCF45B] font-bold w-full px-4 py-2 rounded-full mt-4 shadow-sm hover:scale-105 cursor-pointer transition-transform' onClick={handleRandomSelect}>랜덤 뽑기</button>
-              { pageNo ?   
+              { pageParam ?   
               <button className='bg-blue-500 text-white w-full px-4 py-2 rounded-full mt-4 shadow-sm hover:scale-105 cursor-pointer transition-transform' onClick={handleOpenPadlet}>Padlet 열기</button>
               : ""}
               </div>
