@@ -119,7 +119,7 @@ function App() {
 
   return (
     <div className='bg-[#f5f8fa] min-h-screen h-full'>
-      <Navbar handleOpenAbout={handleOpenAbout} setRightContentVisible={setRightContentVisible} handleOpenPages={handleOpenPages}/>
+      <Navbar pageParam={pageParam} area={area} no={no} handleOpenAbout={handleOpenAbout} setRightContentVisible={setRightContentVisible} handleOpenPages={handleOpenPages}/>
       <div className="pt-[52px] flex">
         <div className={`${ rightContentVisible ? "w-1/2 overflow-scroll h-screen" : "max-w-[800px] mx-auto"} p-10 `}>
           <div className='flex-col md:flex-row flex mb-10'>
