@@ -21,7 +21,9 @@ function Navbar({handleOpenAbout, setRightContentVisible}) {
           <div onClick={handleCardPick} className="text-gray-700 hover:text-gray-900 hover:bg-gray-100 px-10 py-1 rounded cursor-pointer">🂠 카드뽑기</div>
           <div onClick={handleOpenAbout} className="text-gray-700 hover:text-gray-900 hover:bg-gray-100 px-10 py-1 rounded cursor-pointer">🔍 About</div>
         </div>
-        <div className="space-x-1 hidden md:block"></div>
+        <div className="space-x-1 hidden md:block">
+          <span className="text-gray-700">_</span>
+        </div>
       </div>
     </nav>
   );
