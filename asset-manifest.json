@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/tpack-deck/static/css/main.1594a592.css",
-    "main.js": "/tpack-deck/static/js/main.92e2a1e0.js",
+    "main.css": "/tpack-deck/static/css/main.f2593447.css",
+    "main.js": "/tpack-deck/static/js/main.fa18bdff.js",
     "static/js/453.e8cfc236.chunk.js": "/tpack-deck/static/js/453.e8cfc236.chunk.js",
     "static/media/logo.png": "/tpack-deck/static/media/logo.124653f3b376b1686f86.png",
     "index.html": "/tpack-deck/index.html",
-    "main.1594a592.css.map": "/tpack-deck/static/css/main.1594a592.css.map",
-    "main.92e2a1e0.js.map": "/tpack-deck/static/js/main.92e2a1e0.js.map",
+    "main.f2593447.css.map": "/tpack-deck/static/css/main.f2593447.css.map",
+    "main.fa18bdff.js.map": "/tpack-deck/static/js/main.fa18bdff.js.map",
     "453.e8cfc236.chunk.js.map": "/tpack-deck/static/js/453.e8cfc236.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1594a592.css",
-    "static/js/main.92e2a1e0.js"
+    "static/css/main.f2593447.css",
+    "static/js/main.fa18bdff.js"
   ]
 }
