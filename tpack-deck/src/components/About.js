@@ -28,7 +28,8 @@ const About = () => {
                 <p className="font-bold my-2">6. 발표한 내용에 대해 서로 피드백을 줍니다.</p>
             </section>
             <section className="py-4">
-                <p className="text-gray-600">💻 만든이 : <a className="underline" href="https://slashpage.com/taesangeom/5r398nmngr1wz2vwje7y?e=1">엄태상</a>(sendmethere@naver.com)</p>
+                <p className="text-gray-600 my-2">💻 만든이 : <a className="underline" href="https://slashpage.com/taesangeom/5r398nmngr1wz2vwje7y?e=1">엄태상</a>(sendmethere@naver.com)</p>
+                <p className="text-gray-600 my-2">📝 기획 : 고준보(gtkobo92@snu.ac.kr)</p>
             </section>
         </div>
     )
