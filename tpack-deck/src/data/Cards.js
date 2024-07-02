@@ -142,42 +142,42 @@ const Cards = [
     {
         "id": 101,
         "type": "pedagogy",
-        "item": "자기관리 역량",
+        "item": "문제해결학습",
         "desc": "~~~",
         "selected": false
     },
     {
         "id": 102,
         "type": "pedagogy",
-        "item": "지식정보처리 역량",
+        "item": "탐구학습",
         "desc": "~~~",
         "selected": false
     },
     {
         "id": 103,
         "type": "pedagogy",
-        "item": "창의적 사고 역량",
+        "item": "토의, 토론학습",
         "desc": "~~~",
         "selected": false
     },
     {
         "id": 104,
         "type": "pedagogy",
-        "item": "심미적 감성 역량",
+        "item": "게임기반학습(게이미피케이션)",
         "desc": "~~~",
         "selected": false
     },
     {
         "id": 105,
         "type": "pedagogy",
-        "item": "협력적 소통 역량",
+        "item": "거꾸로학습(플립러닝)",
         "desc": "~~~",
         "selected": false
     },
     {
         "id": 106,
         "type": "pedagogy",
-        "item": "공동체 역량",
+        "item": "하브루타학습",
         "desc": "~~~",
         "selected": false
     },
